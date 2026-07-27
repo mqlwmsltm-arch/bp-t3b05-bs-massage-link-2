@@ -1,199 +1,90 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>발산 마사지 링크 – 정보 | 형이 알려주는 디테일</title>
-    <meta name="description" content="발산 마사지 링크 상세 정보. 위치, 가격, 운영시간, 자주 묻는 질문까지. 형이 직접 정리한 찐 정보.">
-    <meta name="keywords" content="발산 마사지 링크, 발산 마사지 정보, 발산 스웨디시 가격, 발산 마사지 위치, 마사지 맛집 상세">
-    <meta name="bpaas-design-system" content="brutalist-avantgarde">
-    <meta name="bpaas-design-theme" content="kr-neon-void">
-    <link rel="canonical" href="https://t3b05-bs-massage-link-2.vercel.app/info">
-    <meta property="og:title" content="발산 마사지 링크 – 정보 페이지">
-    <meta property="og:description" content="발산 마사지 링크, 형이 다 정리했다. 위치, 가격, 꿀팁까지 한눈에.">
-    <style>
-        /* RESET & BASE */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { font-size: 16px; scroll-behavior: smooth; }
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background: #0d0d0d;
-            color: #e0e0e0;
-            line-height: 1.6;
-            min-height: 100vh;
-            position: relative;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(45deg, rgba(255,20,147,0.03) 25%, transparent 25%),
-                linear-gradient(-45deg, rgba(0,255,255,0.03) 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, rgba(255,20,147,0.03) 75%),
-                linear-gradient(-45deg, transparent 75%, rgba(0,255,255,0.03) 75%);
-            background-size: 40px 40px;
-            pointer-events: none;
-            z-index: -1;
-        }
-        /* TYPOGRAPHY */
-        h1, h2, h3, h4 { font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-        h1 { font-size: 2.8rem; line-height: 1.1; color: #ff1493; text-shadow: 0 0 10px #ff1493; }
-        h2 { font-size: 2rem; color: #00ffff; text-shadow: 0 0 8px #00ffff; border-bottom: 2px solid #ff1493; padding-bottom: 0.3rem; margin-bottom: 1.5rem; }
-        h3 { font-size: 1.4rem; color: #ffb6c1; }
-        p, li { font-size: 1rem; color: #c0c0c0; margin-bottom: 0.8rem; }
-        a { color: #00ffff; text-decoration: underline wavy #ff1493; transition: all 0.2s; }
-        a:hover { color: #ff1493; text-decoration: none; background: rgba(0,255,255,0.2); }
-        /* LAYOUT */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        @media (max-width: 768px) { .container { padding: 0 12px; } }
-        /* HEADER & NAV */
-        header { background: #111; padding: 1rem 0; border-bottom: 3px solid #ff1493; position: sticky; top: 0; z-index: 100; }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: bold; color: #ff1493; text-shadow: 0 0 5px #ff1493; }
-        .logo a { color: inherit; text-decoration: none; }
-        nav { display: flex; gap: 2rem; align-items: center; }
-        nav a { font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #00ffff; text-decoration: none; padding: 0.4rem 0; border-bottom: 2px solid transparent; transition: 0.2s; }
-        nav a:hover { border-bottom-color: #ff1493; color: #ff1493; }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .hamburger span { width: 28px; height: 3px; background: #00ffff; }
-        @media (max-width: 768px) {
-            nav { display: none; flex-direction: column; background: #111; position: absolute; top: 100%; left: 0; width: 100%; padding: 1rem 0; gap: 0.5rem; }
-            nav.active { display: flex; }
-            nav a { padding: 0.8rem 1rem; border-bottom: 1px solid #333; }
-            .hamburger { display: flex; }
-        }
-        .tel-link { display: inline-block; background: #ff1493; color: #0d0d0d; padding: 0.5rem 1.2rem; font-weight: bold; text-transform: uppercase; text-decoration: none; border: 2px solid #ff1493; transition: 0.2s; }
-        .tel-link:hover { background: #0d0d0d; color: #ff1493; }
-        /* MAIN CONTENT */
-        main { padding: 3rem 0; }
-        .hero-small { padding: 2rem 0; text-align: center; }
-        .hero-small h1 { margin-bottom: 1rem; }
-        .hero-small p { font-size: 1.2rem; color: #aaa; }
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 3rem 0; }
-        .card { background: #1a1a1a; border: 1px solid #333; padding: 1.5rem; transition: 0.2s; }
-        .card:hover { border-color: #ff1493; box-shadow: 0 0 15px rgba(255,20,147,0.3); }
-        .card h3 { margin-bottom: 0.8rem; }
-        .card p { font-size: 0.95rem; }
-        .info-list { list-style: none; padding: 0; }
-        .info-list li { padding: 0.5rem 0; border-bottom: 1px dashed #333; display: flex; gap: 0.5rem; }
-        .info-list li strong { color: #ff1493; min-width: 100px; }
-        /* FAQ */
-        .faq-item { border: 1px solid #333; margin-bottom: 1rem; }
-        .faq-question { background: #1a1a1a; padding: 1rem; cursor: pointer; font-weight: bold; color: #00ffff; display: flex; justify-content: space-between; align-items: center; }
-        .faq-question::after { content: '+'; font-size: 1.4rem; color: #ff1493; }
-        .faq-answer { padding: 0 1rem 1rem; display: none; }
-        .faq-item.open .faq-answer { display: block; }
-        .faq-item.open .faq-question::after { content: '-'; }
-        /* FOOTER */
-        footer { background: #111; padding: 2rem 0; border-top: 3px solid #00ffff; text-align: center; margin-top: 3rem; }
-        footer p { font-size: 0.85rem; color: #666; }
-        /* 반응형 */
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.6rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>발산 마사지 - 정보</title>
+  <meta name="description" content="발산 지역에서 제공되는 다양한 마사지 서비스에 대한 상세 정보와 지역 시그널을 한눈에 확인하세요.">
+  <meta name="bpaas-design-system" content="editorial-apple">
+  <meta name="bpaas-design-theme" content="kr-ledger-warm">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="canonical" href="https://balsan-body-zone.program-school.online/about.html">
+  <meta property="og:url" content="https://balsan-body-zone.program-school.online/about.html">
 </head>
 <body>
-    <header>
-        <div class="container header-inner">
-            <div class="logo"><a href="/">링크 마사지</a></div>
-            <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('nav').classList.toggle('active')">
-                <span></span><span></span><span></span>
-            </div>
-            <nav>
-                <a href="/">홈</a>
-                <a href="/info">정보</a>
-                <a href="/review">후기</a>
-                <a href="tel:01062790860" class="tel-link">전화 예약</a>
-            </nav>
-        </div>
-    </header>
+  <header class="site-header">
+    <h1 class="logo">발산 마사지 정보</h1>
+    <nav class="site-nav">
+      <ul>
+        <li><a href="/home">홈</a></li>
+        <li><a href="/services">서비스</a></li>
+        <li><a href="/contact">연락처</a></li>
+        <li><a href="/about">소개</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section class="hero-small">
-            <div class="container">
-                <h1>📌 발산 마사지 링크<br>상세 정보</h1>
-                <p>형이 직접 발로 뛰고 정리한 찐 정보. 예약 전에 꼭 확인해라.</p>
-            </div>
-        </section>
+  <main class="content-wrapper">
+    <section class="intro-section">
+      <h2 class="section-title">발산 마사지란?</h2>
+      <p>발산은 서울 북부에 위치한 활기찬 동네로, 다양한 문화와 편의시설이 어우러진 곳입니다. 이곳에서 제공되는 마사지는 피로 회복은 물론, 심신의 균형을 잡아주는 데 초점을 맞추고 있습니다. 각 마사지 샵은 지역 주민들의 요구를 반영해 맞춤형 프로그램을 운영하고 있어, 처음 방문하는 고객도 편안하게 이용할 수 있습니다.</p>
+      <p>특히 발산은 대중교통 접근성이 뛰어나기 때문에, 지하철 7호선과 버스 노선을 이용해 손쉽게 방문할 수 있습니다. 주변에 카페와 공원, 쇼핑몰이 많아 마사지 전후로 여유롭게 시간을 보낼 수 있다는 점도 큰 장점입니다.</p>
+    </section>
 
-        <section class="container">
-            <h2>📍 위치 &amp; 연락처</h2>
-            <ul class="info-list">
-                <li><strong>주소</strong> 서울 강서구 발산로 12길 34, 2층 (발산역 3번 출구 도보 3분)</li>
-                <li><strong>전화</strong> <a href="tel:01062790860">010-6279-0860</a> (형 직통)</li>
-                <li><strong>영업시간</strong> 매일 10:00 – 22:00 (마지막 접수 21:00)</li>
-                <li><strong>예약</strong> 전화 예약 필수 (당일 예약 가능)</li>
-            </ul>
-        </section>
+    <section class="benefits-section">
+      <h2 class="section-title">주요 혜택 및 특징</h2>
+      <p>다양한 종류의 테라피가 준비돼 있어, 깊은 근육 이완을 위한 스웨디시부터 스트레스를 해소하는 아로마 테라피까지 선택의 폭이 넓습니다. 각 테라피는 전문 인증을 받은 테라피스트가 진행하며, 고객의 체형과 건강 상태에 맞춰 강도를 조절합니다.</p>
+      <p>예약 시 제공되는 맞춤 상담을 통해 개인별 필요에 맞는 프로그램을 설계해 주므로, 원하는 효과를 정확히 얻을 수 있습니다. 또한, 첫 방문 고객에게는 초기 체험 할인 혜택이 제공돼 부담 없이 시작할 수 있습니다.</p>
+    </section>
 
-        <section class="container">
-            <h2>💰 가격 안내</h2>
-            <div class="card-grid">
-                <div class="card">
-                    <h3>타이 마사지</h3>
-                    <p>60분 – 60,000원<br>90분 – 85,000원<br>120분 – 110,000원</p>
-                    <p>형 추천: 90분이 딱 좋다. 몸이 가벼워지는 느낌.</p>
-                </div>
-                <div class="card">
-                    <h3>스웨디시</h3>
-                    <p>60분 – 70,000원<br>90분 – 95,000원<br>120분 – 125,000원</p>
-                    <p>부드럽지만 깊게. 진짜 힐링 원하면 스웨디시.</p>
-                </div>
-                <div class="card">
-                    <h3>아로마 / 오일</h3>
-                    <p>60분 – 75,000원<br>90분 – 100,000원</p>
-                    <p>향 좋고 피부 촉촉. 여친님들한테 인기 만점.</p>
-                </div>
-                <div class="card">
-                    <h3>발 관리 (풋 케어)</h3>
-                    <p>40분 – 45,000원</p>
-                    <p>하루 종일 걸었거나 신발 벗기 부끄러울 때 딱.</p>
-                </div>
-            </div>
-            <p style="text-align:right; font-style:italic;">※ 가격은 사전 공지 없이 변경될 수 있음. 전화로 확인하는 게 가장 정확함.</p>
-        </section>
+    <section class="process-section">
+      <h2 class="section-title">예약 및 이용 절차</h2>
+      <p>온라인 예약 페이지(발산 마사지 링크)에서 원하는 날짜와 시간을 선택하면 바로 확인 메일이 전송됩니다. 예약 전에는 간단한 설문을 통해 현재 건강 상태와 원하는 마사지 유형을 입력하도록 안내됩니다.</p>
+      <p>예약 당일에는 접수 카운터에서 신분증을 제시하고, 간단한 몸무게와 혈압 체크 후 테라피스트와 함께 세부 프로그램을 최종 조율합니다. 시술 후에는 휴식 공간에서 물을 충분히 마시며 몸의 회복을 돕는 것이 좋습니다.</p>
+    </section>
 
-        <section class="container">
-            <h2>❓ 자주 묻는 질문</h2>
-            <div class="faq-item open">
-                <div class="faq-question">예약은 꼭 전화로만 되나요?</div>
-                <div class="faq-answer">응, 아직은 전화 예약이 제일 확실해. 문자나 카톡도 가능하지만 전화가 가장 빠르다. 010-6279-0860으로 바로 전화해라. 형이 받을 때도 있고 사장님이 받을 때도 있음.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">주차 가능한가요?</div>
-                <div class="faq-answer">건물 뒤편에 공영 주차장이 있어. 30분 무료고, 샵에서 1시간 추가권 준다. 차 가져와도 문제없음. 대신 발산역이 가까우니 지하철도 추천.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">남자 혼자 가도 괜찮나요?</div>
-                <div class="faq-answer">당연하지. 형도 혼자 자주 간다. 불편한 거 전혀 없고, 관리사분들 프로페셔널하셔서 남녀 구분 없이 편하게 받을 수 있어. 남성분들 단골도 많음.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">첫 방문인데 어떤 코스가 좋을까요?</div>
-                <div class="faq-answer">첫 방문이면 타이 90분 강추. 근육이 뻐근한 느낌이 확 풀리고 가성비도 좋아. 스웨디시는 좀 더 럭셔리하게 풀고 싶을 때 골라봐. 형은 둘 다 해봤는데 둘 다 만족.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">위생 상태는 어떤가요?</div>
-                <div class="faq-answer">형이 제일 민감하게 보는 부분인데, 여기는 깔끔해. 수건도 매번 세탁된 거 쓰고, 침대 시트도 손님마다 갈아줘. 샤워실도 청결하고. 걱정 안 해도 됨.</div>
-            </div>
-        </section>
+    <section class="safety-section">
+      <h2 class="section-title">안전 및 위생 관리</h2>
+      <p>각 마사지실은 매일 철저히 소독되며, 사용되는 타월과 시트는 일회용 또는 고온 살균 과정을 거칩니다. 테라피스트는 손 씻기와 손 소독을 빈번히 실시해 고객의 건강을 최우선으로 보호합니다.</p>
+      <p>특히 최근 건강 이슈에 대응해 체온 측정 및 건강 체크 리스트를 도입했으며, 이상이 발견될 경우 사전 안내와 함께 예약을 재조정합니다. 고객은 언제든 불편함을 호소할 수 있도록 피드백 창구를 운영하고 있습니다.</p>
+    </section>
 
-        <section class="container" style="margin-top: 3rem;">
-            <h2>💬 형의 한마디</h2>
-            <p style="background:#1a1a1a; padding:1.5rem; border-left: 4px solid #ff1493;">
-                발산에서 마사지 맛집 찾는다면 여기가 진짜다. 가격도 착하고, 손맛은 예술. 형이 보증한다. 
-                가짜 후기나 뻥 안 치고, 진짜 내돈내산 경험으로 말하는 거니까 믿어도 된다. 
-                예약은 전화로 바로! <a href="tel:01062790860">010-6279-0860</a>.
-            </p>
-        </section>
-    </main>
+    <section class="local-signal-section">
+      <h2 class="section-title">발산 지역 시그널</h2>
+      <p>발산은 최근 5년간 인구가 꾸준히 증가하며, 20대·30대 직장인들의 거주 비중이 높아지고 있습니다. 이러한 인구 구조는 스트레스 관리와 웰빙 서비스에 대한 수요가 급증하고 있음을 의미합니다.</p>
+      <p>또한, 인근에 위치한 대형 쇼핑몰과 문화센터는 방문 고객에게 휴식과 여가를 동시에 제공하는 환경을 조성합니다. 대중교통으로는 7호선 발산역과 2호선 구리역이 가까워, 서울 전역에서 접근이 용이합니다.</p>
+    </section>
 
-    <footer>
-        <div class="container">
-            <p>© 형 추천 발산 마사지 링크 | 본 사이트는 실제 업소와 관련된 개인 경험 기반 콘텐츠입니다.</p>
-            <p>문의/예약: <a href="tel:01062790860">010-6279-0860</a></p>
+    <section class="faq-section">
+      <h2 class="section-title">자주 묻는 질문</h2>
+      <div class="faq-item">
+        <h3 class="question">Q1. 마사지 전 반드시 해야 할 준비가 있나요?</h3>
+        <p class="answer">네, 가벼운 스트레칭과 충분한 수분 섭취를 권장합니다. 또한, 금식이나 과식은 피하고, 편안한 복장을 준비해 주세요.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="question">Q2. 예약 취소는 어떻게 하나요?</h3>
+        <p class="answer">온라인 예약 페이지에서 취소 버튼을 누르면 즉시 처리됩니다. 다만, 24시간 이전에 취소해야 전액 환불이 가능합니다.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="question">Q3. 임산부도 이용할 수 있나요?</h3>
+        <p class="answer">임산부를 위한 특별 테라피가 마련돼 있습니다. 담당 테라피스트와 사전 상담 후 안전한 프로그램을 선택해 주세요.</p>
+      </div>
+      <div class="faq-item">
+        <h3 class="question">Q4. 마사지를 받는 동안 옷을 벗어야 하나요?</h3>
+        <p class="answer">대부분의 테라피는 옷을 입은 채로 진행됩니다. 필요 시에는 개인용 수건을 제공해 드리니, 편안한 복장을 착용하시면 됩니다.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 발산 마사지. All rights reserved.</p>
+    <nav class="footer-nav">
+      <ul>
+        <li><a href="/privacy">개인정보 처리방침</a></li>
+        <li><a href="/terms">서비스 이용약관</a></li>
+        <li><a href="/sitemap">사이트맵</a></li>
+      </ul>
+    </nav>
+  </footer>
 </body>
 </html>
